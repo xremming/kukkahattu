@@ -2,6 +2,8 @@ package scenes;
 
 import com.haxepunk.Scene;
 import com.haxepunk.graphics.Image;
+import com.haxepunk.HXP;
+import entities.Player;
 
 class GameScene extends Scene
 {
@@ -13,6 +15,9 @@ class GameScene extends Scene
 	public override function begin()
 	{
         trace("GameScene starting...");
-        add(new entities.Player(0, 0));
+        var player:Player = new Player(0, 0);
+        player.x = HXP.halfWidth - 32;
+        player.y = HXP.halfHeight - 32;
+        add(player);
 	}
 }

@@ -7,6 +7,8 @@ import com.haxepunk.utils.Input;
 import com.haxepunk.utils.Key;
 
 class MenuScene extends Scene {
+	private var timer:Float = 0;
+	private var play:Image;
 
 	public function new() {
 		super();
@@ -19,13 +21,21 @@ class MenuScene extends Scene {
 		logo.x = HXP.halfWidth - (logo.width / 2);
 		logo.y = HXP.halfHeight - (logo.height / 2);
 
-		var play:Image = new Image("graphics/play.png");
+		play = new Image("graphics/play.png");
 		addGraphic(play);
+		play.x = HXP.halfWidth - (play.width / 2);
+		play.y = HXP.halfHeight - (play.height / 2);
 
 	}
 
 	public override function update() {
-		if(Input.check(Key.ENTER)) {
+		timer += HXP.elapsed;
+		if (timer > 0.7) {
+			timer -= 0.7;
+			play.visible = !play.visible;
+		}
+
+		if(Input.check(Key.SPACE)) {
 			HXP.scene = new scenes.GameScene();
 		}
 
