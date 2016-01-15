@@ -14,11 +14,13 @@ class Player extends Entity
     {
         super(x, y);
 
-        sprite = new Spritemap("graphics/hahmo.png", 32, 32);
+        sprite = new Spritemap("graphics/hahmo.png", 64, 64);
 
-        sprite.add("walk", [0, 1, 2], 8);
+        sprite.add("walk_horiz", [0, 1, 2, 1], 6);
+        sprite.add("walk_down", [3, 4], 6);
+        sprite.add("walk_up", [6, 7], 6);
 
-        sprite.play("walk");
+        sprite.play("walk_down");
 
         graphic = sprite;
     }
@@ -54,10 +56,20 @@ class Player extends Entity
 
         moveBy(accX, accY);
 
-        if (accX > 0) {
+        if (Math.abs(accY) > Math.abs(accX)) {
             sprite.flipped = false;
+            if (accY > 0) {
+                sprite.play("walk_down");
+            } else {
+                sprite.play("walk_up");
+            }
         } else {
-            sprite.flipped = true;
+            sprite.play("walk_horiz");
+            if (accX > 0) {
+                sprite.flipped = false;
+            } else {
+                sprite.flipped = true;
+            }
         }
 
         super.update();
