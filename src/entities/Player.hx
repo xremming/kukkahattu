@@ -1,18 +1,26 @@
 package entities;
 
 import com.haxepunk.Entity;
-import com.haxepunk.graphics.Image;
+import com.haxepunk.graphics.Spritemap;
 import com.haxepunk.utils.Input;
 import com.haxepunk.utils.Key;
 import com.haxepunk.HXP;
 
 class Player extends Entity
 {
+    private var sprite:Spritemap;
+
     public function new(x:Int, y:Int)
     {
         super(x, y);
 
-        graphic = new Image("graphics/block.png");
+        sprite = new Spritemap("graphics/hahmo.png", 32, 32);
+
+        sprite.add("walk", [0, 1, 2], 8);
+
+        sprite.play("walk");
+
+        graphic = sprite;
     }
 
     private var acc:Float = 64;
@@ -36,19 +44,21 @@ class Player extends Entity
             accX -= acc * HXP.elapsed;
         }
 
-        if (accX > maxAcc * HXP.elapsed)
-            accX = maxAcc * HXP.elapsed;
-        if (accX < -maxAcc * HXP.elapsed)
-            accX = -maxAcc * HXP.elapsed;
-        if (accY > maxAcc * HXP.elapsed)
-            accY = maxAcc * HXP.elapsed;
-        if (accY < -maxAcc * HXP.elapsed)
-            accY = -maxAcc * HXP.elapsed;
+        accX = Math.min(accX, maxAcc * HXP.elapsed);
+        accX = Math.max(accX, -maxAcc * HXP.elapsed);
+        accY = Math.min(accY, maxAcc * HXP.elapsed);
+        accY = Math.max(accY, -maxAcc * HXP.elapsed);
 
         accX *= friction;
         accY *= friction;
 
         moveBy(accX, accY);
+
+        if (accX > 0) {
+            sprite.flipped = false;
+        } else {
+            sprite.flipped = true;
+        }
 
         super.update();
     }
