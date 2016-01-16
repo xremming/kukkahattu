@@ -170,7 +170,9 @@ class Player extends Entity
 
     private var canShoot:Bool = true;
     private var sinceShoot:Float = 0;
-    private var shootSounds = [new Sfx("audio/laser0.ogg"), new Sfx("audio/laser1.ogg"), new Sfx("audio/laser2.ogg")];
+    private var shootSounds = [new Sfx("audio/laser0.ogg"),
+                               new Sfx("audio/laser1.ogg"),
+                               new Sfx("audio/laser2.ogg")];
     private var xOffset = [10, 14, 10, 4];
     private var yOffset = [-8, 6, 8, 6];
 
