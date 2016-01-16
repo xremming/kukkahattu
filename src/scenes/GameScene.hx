@@ -26,6 +26,7 @@ class GameScene extends Scene
         add(player);
 
         spawnTimer = 1;
+        KH.score = 0;
 
 	}
 

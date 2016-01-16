@@ -35,7 +35,7 @@ class MenuScene extends Scene {
 			play.visible = !play.visible;
 		}
 
-		if(Input.check(Key.SPACE)) {
+		if(Input.released(Key.SPACE)) {
 			HXP.scene = new scenes.GameScene();
 		}
 

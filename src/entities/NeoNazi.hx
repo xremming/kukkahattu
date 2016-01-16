@@ -5,6 +5,9 @@ import com.haxepunk.graphics.Spritemap;
 import entities.Player;
 import com.haxepunk.HXP;
 import com.haxepunk.Scene;
+import scenes.GameScene;
+import com.haxepunk.graphics.Image;
+import entities.Recipe;
 
 class NeoNazi extends Entity {
 	private var sprite:Spritemap;
@@ -20,6 +23,8 @@ class NeoNazi extends Entity {
 		graphic = sprite;
 
 		setHitbox(36, 58, 12, 4);
+
+		type = "nazi";
 	}
 
 	public override function added() {
@@ -30,11 +35,22 @@ class NeoNazi extends Entity {
 		moveTowards(player.x, player.y, 100 * HXP.elapsed);
 
 		if (collide("player", x, y) != null) {
-			HXP.scene = new scenes.MenuScene();
+			HXP.scene = new scenes.GameOverScene();
 		}
 
 		var laser = collide("laser", x, y);
 		if (laser != null) {
+			var prob = Math.random();
+
+			if (prob >= 0) {
+				trace("Recipe dropped!");
+				var recipe = new Recipe(0, 0);
+				recipe.x = x;
+				recipe.y = y;
+
+				HXP.scene.add(recipe);
+			}
+
 			HXP.scene.remove(laser);
 			HXP.scene.remove(this);
 		}
