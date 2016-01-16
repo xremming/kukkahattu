@@ -168,17 +168,31 @@ class Player extends Entity
         }
     }
 
+    private var fireRate:Float = 3;
+    private var canShoot:Bool = true;
+    private var sinceShoot:Float = 0;
+
     private function shoot()
     {
-        switch (sDirection) {
-            case 0:
-                HXP.scene.add(new Laser(sDirection, x, y));
-            case 1:
-                HXP.scene.add(new Laser(sDirection, x, y));
-            case 2:
-                HXP.scene.add(new Laser(sDirection, x, y));
-            case 3:
-                HXP.scene.add(new Laser(sDirection, x, y));
+        if (canShoot) {
+            switch (sDirection) {
+                case 0:
+                    HXP.scene.add(new Laser(sDirection, x, y));
+                case 1:
+                    HXP.scene.add(new Laser(sDirection, x, y));
+                case 2:
+                    HXP.scene.add(new Laser(sDirection, x, y));
+                case 3:
+                    HXP.scene.add(new Laser(sDirection, x, y));
+            }
+            canShoot = false;
+        } else {
+            if (sinceShoot >= 1 / fireRate) {
+                sinceShoot = 0;
+                canShoot = true;
+            } else {
+                sinceShoot += HXP.elapsed;
+            }
         }
     }
 }
