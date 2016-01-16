@@ -5,6 +5,7 @@ import com.haxepunk.graphics.Spritemap;
 import com.haxepunk.utils.Input;
 import com.haxepunk.utils.Key;
 import com.haxepunk.HXP;
+import com.haxepunk.Sfx;
 
 import entities.Laser;
 
@@ -169,23 +170,17 @@ class Player extends Entity
 
     private var canShoot:Bool = true;
     private var sinceShoot:Float = 0;
+    private var shootSounds = [new Sfx("audio/laser0.ogg"), new Sfx("audio/laser1.ogg"), new Sfx("audio/laser2.ogg")];
+    private var xOffset = [10, 14, 10, 4];
+    private var yOffset = [-8, 6, 8, 6];
 
     private function shoot()
     {
         if (canShoot) {
-            switch (sDirection) {
-                case 0:
-                    HXP.scene.add(new Laser(sDirection, x+10, y-8));
-                    canShoot = false;
-                case 1:
-                    HXP.scene.add(new Laser(sDirection, x+14, y+6));
-                    canShoot = false;
-                case 2:
-                    HXP.scene.add(new Laser(sDirection, x+10, y+8));
-                    canShoot = false;
-                case 3:
-                    HXP.scene.add(new Laser(sDirection, x+4, y+6));
-                    canShoot = false;
+            if (sDirection >= 0 && sDirection <= 3) {
+                HXP.scene.add(new Laser(sDirection, x+xOffset[sDirection], y+yOffset[sDirection]));
+                canShoot = false;
+                HXP.choose(shootSounds).play();
             }
         } else {
             if (sinceShoot >= 1 / KH.playerFireRate) {

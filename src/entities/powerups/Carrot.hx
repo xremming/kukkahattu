@@ -3,6 +3,7 @@ package entities.powerups;
 import com.haxepunk.Entity;
 import com.haxepunk.HXP;
 import com.haxepunk.graphics.Image;
+import com.haxepunk.Sfx;
 
 class Carrot extends Entity
 {
@@ -21,6 +22,8 @@ class Carrot extends Entity
 		if (collide("player", x, y) != null) {
 			HXP.scene.remove(this);
 			KH.playerFireRate += 1;
+			var plim = new Sfx("audio/plim.ogg");
+			plim.play();
 		}
 
 		super.update();
