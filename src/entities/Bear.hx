@@ -58,7 +58,7 @@ class Bear extends Entity
 			}
 		}
 
-		if (x <= -130) {
+		if (x <= 0 - width) {
 			var carrot = new Carrot(HXP.halfWidth - 16, HXP.halfHeight -16);
 			HXP.scene.add(carrot);
 
