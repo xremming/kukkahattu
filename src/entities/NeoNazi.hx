@@ -16,13 +16,13 @@ class NeoNazi extends Entity {
 	public function new(x:Int, y:Int) {
 		super(x, y);
 
-		sprite = new Spritemap("graphics/neonazi.png", 64, 64);
+		sprite = new Spritemap("graphics/neonazi.png", 36, 58);
 		sprite.add("walk", [1, 2], 6);
 		sprite.play("walk");
 
 		graphic = sprite;
 
-		setHitbox(36, 58, -12, -4);
+		setHitbox(36, 58);
 
 		type = "nazi";
 	}

@@ -16,7 +16,7 @@ class Player extends Entity
     {
         super(x, y);
 
-        sprite = new Spritemap("graphics/hahmo.png", 64, 64);
+        sprite = new Spritemap("graphics/player.png", 24, 52);
 
         sprite.add("walk_horiz", [0, 1, 2, 1], 6);
         sprite.add("walk_down", [3, 4], 6);
@@ -31,7 +31,7 @@ class Player extends Entity
 
         graphic = sprite;
 
-        setHitbox(34, 54, -8, -6);
+        setHitbox(24, 52);
 
         type = "player";
     }
@@ -177,13 +177,13 @@ class Player extends Entity
         if (canShoot) {
             switch (sDirection) {
                 case 0:
-                    HXP.scene.add(new Laser(sDirection, x, y));
+                    HXP.scene.add(new Laser(sDirection, x+10, y-8));
                 case 1:
-                    HXP.scene.add(new Laser(sDirection, x, y));
+                    HXP.scene.add(new Laser(sDirection, x+14, y+6));
                 case 2:
-                    HXP.scene.add(new Laser(sDirection, x, y));
+                    HXP.scene.add(new Laser(sDirection, x+10, y+8));
                 case 3:
-                    HXP.scene.add(new Laser(sDirection, x, y));
+                    HXP.scene.add(new Laser(sDirection, x+4, y+6));
             }
             canShoot = false;
         } else {
