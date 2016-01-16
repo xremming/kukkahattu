@@ -13,7 +13,28 @@ class NeoNazi extends Entity {
 	private var sprite:Spritemap;
 	private var player:Entity;
 
-	public function new(x:Int, y:Int) {
+	public function new() {
+
+
+		var direction = Math.random();
+        var x = Math.random() * HXP.width;
+        var y = Math.random() * HXP.height;
+
+        if (direction < (1/4)) {
+            // spawn from above
+            y = 0 - 58;
+        } else if (direction < (2/4)) {
+            // spawn from right
+            x = HXP.width;
+        } else if (direction < (3/4)) {
+            // spawn from below
+            y = HXP.height;
+        } else if (direction < 1) {
+            // spawn from left
+            x = 0 - 36;
+        }
+
+
 		super(x, y);
 
 		sprite = new Spritemap("graphics/neonazi.png", 36, 58);
@@ -42,7 +63,7 @@ class NeoNazi extends Entity {
 		if (laser != null) {
 			var prob = Math.random();
 
-			if (prob >= KH.recipeDroprate) {
+			if (prob < KH.recipeDroprate) {
 				var recipe = new Recipe(0, 0);
 				recipe.x = x + halfWidth - recipe.halfWidth;
 				recipe.y = y + halfHeight - recipe.halfHeight;

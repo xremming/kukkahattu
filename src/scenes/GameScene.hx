@@ -5,6 +5,7 @@ import com.haxepunk.graphics.Image;
 import com.haxepunk.HXP;
 import entities.Player;
 import entities.NeoNazi;
+import entities.Bear;
 
 class GameScene extends Scene
 {
@@ -46,10 +47,18 @@ class GameScene extends Scene
 
     public override function update() 
     {
+        var prob = Math.random();
+
         spawnTimer -= HXP.elapsed;
         if (spawnTimer < 0) 
         {
-            spawnNazi();
+            if (prob < 0.1) {
+                add(new Bear());
+            } else {
+                add(new NeoNazi());
+            }
+            
+            spawnTimer = (1 / KH.spawnRate) + ((1 / KH.spawnDeviation) * Math.random());
         }
 
         // Increase enemy spawn rate
@@ -57,37 +66,6 @@ class GameScene extends Scene
         KH.spawnDeviation += KH._spawnDeviationDifficulty * HXP.elapsed;
 
         super.update();
-    }
-
-    private function spawnNazi()
-    {
-        var nazi = new NeoNazi(0, 0);
-
-        var direction = Math.random();
-        var x = Math.random() * HXP.width;
-        var y = Math.random() * HXP.height;
-
-        if (direction <= (1/4)) {
-            // spawn from above
-            nazi.x = x;
-            nazi.y = 0 - nazi.height;
-        } else if (direction <= (2/4)) {
-            // spawn from right
-            nazi.x = HXP.width;
-            nazi.y = y;
-        } else if (direction <= (3/4)) {
-            // spawn from below
-            nazi.x = x;
-            nazi.y = HXP.height;
-        } else if (direction <= 1) {
-            // spawn from left
-            nazi.x = 0 - nazi.width;
-            nazi.y = y;
-        }
-
-        add(nazi);
-
-        spawnTimer = (1 / KH.spawnRate) + ((1 / KH.spawnDeviation) * Math.random());
     }
 
 }
