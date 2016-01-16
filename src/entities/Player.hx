@@ -19,10 +19,15 @@ class Player extends Entity
         sprite.add("walk_horiz", [0, 1, 2, 1], 6);
         sprite.add("walk_down", [3, 4], 6);
         sprite.add("walk_up", [6, 7], 6);
+        sprite.add("walk_stop", [5], 6);
 
-        sprite.play("walk_down");
+        sprite.play("walk_stop");
 
         graphic = sprite;
+
+        setHitbox(34, 52, 8, 6);
+
+        type = "player";
     }
 
     private var acc:Float = 64;
@@ -33,18 +38,51 @@ class Player extends Entity
 
     public override function update()
     {
-        if (Input.check(Key.W)) {
+        checkInput();
+
+        move();
+
+        setAnimations();
+
+        shoot();
+    }
+
+    private var cUp:Bool = false;
+    private var cRight:Bool = false;
+    private var cDown:Bool = false;
+    private var cLeft:Bool = false;
+    private var cShoot:Bool = false;
+
+    private function checkInput()
+    {
+        cUp = false;
+        cRight = false;
+        cDown = false;
+        cLeft = false;
+        cShoot = false;
+
+        if (Input.check(Key.W))
+            cUp = true;
+        if (Input.check(Key.D))
+            cRight = true;
+        if (Input.check(Key.S))
+            cDown = true;
+        if (Input.check(Key.A))
+            cLeft = true;
+        if (Input.check(Key.SPACE))
+            cShoot = true;
+    }
+
+    private function move()
+    {
+        if (cUp)
             accY -= acc * HXP.elapsed;
-        }
-        if (Input.check(Key.D)) {
+        if (cRight)
             accX += acc * HXP.elapsed;
-        }
-        if (Input.check(Key.S)) {
+        if (cDown)
             accY += acc * HXP.elapsed;
-        }
-        if (Input.check(Key.A)) {
+        if (cLeft)
             accX -= acc * HXP.elapsed;
-        }
 
         accX = Math.min(accX, maxAcc * HXP.elapsed);
         accX = Math.max(accX, -maxAcc * HXP.elapsed);
@@ -55,23 +93,35 @@ class Player extends Entity
         accY *= friction;
 
         moveBy(accX, accY);
+    }
 
-        if (Math.abs(accY) > Math.abs(accX)) {
-            sprite.flipped = false;
-            if (accY > 0) {
-                sprite.play("walk_down");
-            } else {
-                sprite.play("walk_up");
-            }
-        } else {
+    private function setAnimations()
+    {
+        if (Math.round(accX) == 0 && Math.round(accY) == 0)
+            sprite.play("walk_stop");
+        else if (cLeft) {
+            sprite.flipped = true;
             sprite.play("walk_horiz");
-            if (accX > 0) {
-                sprite.flipped = false;
-            } else {
-                sprite.flipped = true;
-            }
-        }
+        } else if (cRight) {
+            sprite.flipped = false;
+            sprite.play("walk_horiz");
+        } else if (cDown)
+            sprite.play("walk_down");
+        else if (cUp)
+            sprite.play("walk_up");
+    }
 
-        super.update();
+    private function shoot()
+    {
+        if (cShoot) {
+            if (cRight)
+                HXP.scene.add(new Laser(1, x, y));
+            else if (cLeft)
+                HXP.scene.add(new Laser(3, x, y));
+            else if (cDown)
+                HXP.scene.add(new Laser(2, x, y));
+            else if (cUp)
+                HXP.scene.add(new Laser(0, x, y));
+        }
     }
 }
