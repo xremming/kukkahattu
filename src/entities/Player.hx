@@ -31,7 +31,7 @@ class Player extends Entity
 
         graphic = sprite;
 
-        setHitbox(34, 52, 8, 6);
+        setHitbox(34, 54, -8, -6);
 
         type = "player";
     }
@@ -113,6 +113,9 @@ class Player extends Entity
         accY *= friction;
 
         moveBy(accX, accY);
+
+        x = HXP.clamp(x, 0, HXP.width - width);
+        y = HXP.clamp(y, 0, HXP.height - height);
     }
 
     private function setAnimations()

@@ -22,7 +22,7 @@ class NeoNazi extends Entity {
 
 		graphic = sprite;
 
-		setHitbox(36, 58, 12, 4);
+		setHitbox(36, 58, -12, -4);
 
 		type = "nazi";
 	}
