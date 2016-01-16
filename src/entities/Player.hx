@@ -12,7 +12,7 @@ class Player extends Entity
 {
     private var sprite:Spritemap;
 
-    public function new(x:Int, y:Int)
+    public function new(x:Float, y:Float)
     {
         super(x, y);
 
@@ -93,13 +93,13 @@ class Player extends Entity
     private function move()
     {
         if (cUp)
-            accY -= KH._acc * HXP.elapsed;
+            accY -= KH.acc * HXP.elapsed;
         if (cRight)
-            accX += KH._acc * HXP.elapsed;
+            accX += KH.acc * HXP.elapsed;
         if (cDown)
-            accY += KH._acc * HXP.elapsed;
+            accY += KH.acc * HXP.elapsed;
         if (cLeft)
-            accX -= KH._acc * HXP.elapsed;
+            accX -= KH.acc * HXP.elapsed;
 
         // Clamp to max acceleration
         accX = HXP.clamp(accX, -KH.maxAcc * HXP.elapsed, KH.maxAcc * HXP.elapsed);

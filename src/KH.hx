@@ -8,11 +8,12 @@ class KH
 	public static var playerFireRate:Float = _playerFireRate;
 
 	public static var _acc = 64;
+	public static var acc = _acc;
 
 	public static var _maxAcc = 128;
 	public static var maxAcc = _maxAcc;
 
-	public static var _friction = 0.9;
+	public static var _friction = 0.75;
 	public static var friction = _friction;
 
 

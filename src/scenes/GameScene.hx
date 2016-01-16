@@ -17,15 +17,16 @@ class GameScene extends Scene
 
 	public override function begin()
 	{
-        trace("GameScene starting...");
+        // Init global values
         initValues();
+
+        // Add background
         addGraphic(new Image("graphics/background.png"));
 
-        var player:Player = new Player(0, 0);
-        player.x = HXP.halfWidth - 32;
-        player.y = HXP.halfHeight - 32;
-        add(player);
+        // Add player to middle of screen
+        add(new Player(HXP.halfWidth - 12, HXP.halfHeight - 26));
 
+        // Don't add NeoNazis right at the beginning
         spawnTimer = 1;
 	}
 
@@ -47,16 +48,17 @@ class GameScene extends Scene
         spawnTimer -= HXP.elapsed;
         if (spawnTimer < 0) 
         {
-            spawn();
+            spawnNazi();
         }
 
+        // Increase enemy spawn rate
         KH.spawnRate += 0.1 * HXP.elapsed;
         KH.spawnDeviation += 0.02 * HXP.elapsed;
 
         super.update();
     }
 
-    private function spawn()
+    private function spawnNazi()
     {
         var nazi = new NeoNazi(0, 0);
 
