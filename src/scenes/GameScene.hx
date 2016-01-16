@@ -69,7 +69,7 @@ class GameScene extends Scene
 
         add(nazi);
 
-        spawnTimer = 1 + (5 * Math.random());
+        spawnTimer = (1 / KH.spawnRate) + (KH.spawnDeviation * Math.random());
     }
 
 }
