@@ -36,9 +36,6 @@ class Player extends Entity
         type = "player";
     }
 
-    private var acc:Float = 64;
-    private var maxAcc:Float = 128;
-    private var friction:Float = 0.9;
     private var accX:Float = 0;
     private var accY:Float = 0;
 
@@ -96,24 +93,26 @@ class Player extends Entity
     private function move()
     {
         if (cUp)
-            accY -= acc * HXP.elapsed;
+            accY -= KH._acc * HXP.elapsed;
         if (cRight)
-            accX += acc * HXP.elapsed;
+            accX += KH._acc * HXP.elapsed;
         if (cDown)
-            accY += acc * HXP.elapsed;
+            accY += KH._acc * HXP.elapsed;
         if (cLeft)
-            accX -= acc * HXP.elapsed;
+            accX -= KH._acc * HXP.elapsed;
 
-        accX = Math.min(accX, maxAcc * HXP.elapsed);
-        accX = Math.max(accX, -maxAcc * HXP.elapsed);
-        accY = Math.min(accY, maxAcc * HXP.elapsed);
-        accY = Math.max(accY, -maxAcc * HXP.elapsed);
+        // Clamp to max acceleration
+        accX = HXP.clamp(accX, -KH.maxAcc * HXP.elapsed, KH.maxAcc * HXP.elapsed);
+        accY = HXP.clamp(accY, -KH.maxAcc * HXP.elapsed, KH.maxAcc * HXP.elapsed);
 
-        accX *= friction;
-        accY *= friction;
+        // Apply friction
+        accX *= KH.friction;
+        accY *= KH.friction;
 
+        // Move player
         moveBy(accX, accY);
 
+        // Clamp to screen
         x = HXP.clamp(x, 0, HXP.width - width);
         y = HXP.clamp(y, 0, HXP.height - height);
     }
@@ -168,7 +167,6 @@ class Player extends Entity
         }
     }
 
-    private var fireRate:Float = KH.playerFireRate;
     private var canShoot:Bool = true;
     private var sinceShoot:Float = 0;
 
@@ -190,7 +188,7 @@ class Player extends Entity
                     canShoot = false;
             }
         } else {
-            if (sinceShoot >= 1 / fireRate) {
+            if (sinceShoot >= 1 / KH.playerFireRate) {
                 sinceShoot = 0;
                 canShoot = true;
             } else {

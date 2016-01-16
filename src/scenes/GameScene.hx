@@ -18,6 +18,7 @@ class GameScene extends Scene
 	public override function begin()
 	{
         trace("GameScene starting...");
+        initValues();
         addGraphic(new Image("graphics/background.png"));
 
         var player:Player = new Player(0, 0);
@@ -26,9 +27,20 @@ class GameScene extends Scene
         add(player);
 
         spawnTimer = 1;
+	}
+
+    private function initValues()
+    {
         KH.score = 0;
 
-	}
+        KH.playerFireRate = KH._playerFireRate;
+        KH.maxAcc = KH._maxAcc;
+        KH.friction = KH._friction;
+
+        KH.recipeDroprate = KH._recipeDropRate;
+        KH.spawnRate = KH._spawnRate;
+        KH.spawnDeviation = KH._spawnDeviation;
+    }
 
     public override function update() 
     {
@@ -37,6 +49,9 @@ class GameScene extends Scene
         {
             spawn();
         }
+
+        KH.spawnRate += 0.1 * HXP.elapsed;
+        KH.spawnDeviation += 0.02 * HXP.elapsed;
 
         super.update();
     }
@@ -69,7 +84,7 @@ class GameScene extends Scene
 
         add(nazi);
 
-        spawnTimer = (1 / KH.spawnRate) + (KH.spawnDeviation * Math.random());
+        spawnTimer = (1 / KH.spawnRate) + ((1 / KH.spawnDeviation) * Math.random());
     }
 
 }
