@@ -12,7 +12,17 @@ class Recipe extends Entity
 		setHitbox(23, 29);
 	}
 
+	private var age:Float = 0;
+
 	public override function update() {
+		if (age >= KH.recipeMaxAge)
+			HXP.scene.remove(this);
+		else
+			age += HXP.elapsed;
+
+		if (age > 0.8 * KH.recipeMaxAge && Math.round(age * age * 8) % 2 == 0)
+			visible = !visible;
+
 		if (collide("player", x, y) != null) {
 			KH.score++;
 			HXP.scene.remove(this);

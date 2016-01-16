@@ -17,12 +17,17 @@ class KH
 	public static var friction = _friction;
 
 
-	public static var _recipeDropRate:Float = 0.7;
+	public static var _recipeDropRate:Float = 0;
 	public static var recipeDroprate:Float = _recipeDropRate;
+
+	public static var _recipeMaxAge:Float = 10;
+	public static var recipeMaxAge:Float = _recipeMaxAge;
 
 	public static var _spawnRate:Float = 0.5;
 	public static var spawnRate:Float = _spawnRate;
+	public static var _spawnRateDifficulty = 0.2;
 
 	public static var _spawnDeviation = 0.2;
 	public static var spawnDeviation:Float = _spawnDeviation;
+	public static var _spawnDeviationDifficulty = 0.1;
 }

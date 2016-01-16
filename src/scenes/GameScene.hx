@@ -39,6 +39,7 @@ class GameScene extends Scene
         KH.friction = KH._friction;
 
         KH.recipeDroprate = KH._recipeDropRate;
+        KH.recipeMaxAge = KH._recipeMaxAge;
         KH.spawnRate = KH._spawnRate;
         KH.spawnDeviation = KH._spawnDeviation;
     }
@@ -52,8 +53,8 @@ class GameScene extends Scene
         }
 
         // Increase enemy spawn rate
-        KH.spawnRate += 0.1 * HXP.elapsed;
-        KH.spawnDeviation += 0.02 * HXP.elapsed;
+        KH.spawnRate += KH._spawnRateDifficulty * HXP.elapsed;
+        KH.spawnDeviation += KH._spawnDeviationDifficulty * HXP.elapsed;
 
         super.update();
     }

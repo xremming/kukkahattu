@@ -105,12 +105,12 @@ class Player extends Entity
         accX = HXP.clamp(accX, -KH.maxAcc * HXP.elapsed, KH.maxAcc * HXP.elapsed);
         accY = HXP.clamp(accY, -KH.maxAcc * HXP.elapsed, KH.maxAcc * HXP.elapsed);
 
+        // Move player
+        moveBy(accX, accY);
+
         // Apply friction
         accX *= KH.friction;
         accY *= KH.friction;
-
-        // Move player
-        moveBy(accX, accY);
 
         // Clamp to screen
         x = HXP.clamp(x, 0, HXP.width - width);
