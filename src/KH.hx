@@ -1,3 +1,5 @@
+import com.haxepunk.Sfx;
+
 class KH
 {
 	public static var score:Int = 0;
@@ -30,4 +32,19 @@ class KH
 	public static var _spawnDeviation = 0.2;
 	public static var spawnDeviation:Float = _spawnDeviation;
 	public static var _spawnDeviationDifficulty = 0.01;
+
+	private static var sounds = new Array();
+	public static function play(sound:Sfx)
+	{
+		sound.play();
+		sounds.push(sound);
+	}
+
+	public static function stopAllSounds()
+	{
+		for (i in sounds) {
+			i.stop();
+		}
+		sounds = [];
+	}
 }
