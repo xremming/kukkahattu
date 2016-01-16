@@ -6,6 +6,7 @@ import com.haxepunk.HXP;
 import entities.Player;
 import entities.Laser;
 import entities.powerups.Carrot;
+import com.haxepunk.Sfx;
 
 class Bear extends Entity
 {
@@ -29,6 +30,8 @@ class Bear extends Entity
 
 	public override function added() {
 		player = HXP.scene.entitiesForType("player").first();
+		var roar = new Sfx("audio/bear.ogg");
+		roar.play();
 	}
 
 	public override function update() {
