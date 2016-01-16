@@ -22,7 +22,7 @@ class NeoNazi extends Entity {
 
 		graphic = sprite;
 
-		setHitbox(36, 58, 12, 4);
+		setHitbox(36, 58, -12, -4);
 
 		type = "nazi";
 	}
@@ -42,11 +42,11 @@ class NeoNazi extends Entity {
 		if (laser != null) {
 			var prob = Math.random();
 
-			if (prob >= 0) {
+			if (prob >= 0.3) {
 				trace("Recipe dropped!");
 				var recipe = new Recipe(0, 0);
-				recipe.x = x;
-				recipe.y = y;
+				recipe.x = x + halfWidth - recipe.halfWidth;
+				recipe.y = y + halfHeight - recipe.halfHeight;
 
 				HXP.scene.add(recipe);
 			}

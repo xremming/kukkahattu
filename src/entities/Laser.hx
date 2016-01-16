@@ -18,15 +18,15 @@ class Laser extends Entity
         var height:Int = 0;
 
         if (dir == 0 || dir == 2) {
-        	width = 2;
-        	height = 6;
+        	width = 4;
+        	height = 8;
         } else if (dir == 1 || dir == 3) {
-        	width = 6;
-        	height = 2;
+        	width = 8;
+        	height = 4;
         }
 
         graphic = Image.createRect(width, height, 0xff0000);
-
+        setHitbox(width, height);
         type = "laser";
     }
 
@@ -44,5 +44,8 @@ class Laser extends Entity
     		case 3:
     			moveBy(-speed * HXP.elapsed, 0);
     	}
+
+    	if (x > HXP.width || y > HXP.height || x < -width || y < -height)
+    		HXP.scene.remove(this);
     }
 }

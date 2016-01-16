@@ -1,5 +1,6 @@
 import com.haxepunk.Engine;
 import com.haxepunk.HXP;
+import com.haxepunk.utils.Key;
 
 class Main extends Engine
 {
@@ -8,6 +9,7 @@ class Main extends Engine
 	{
 #if debug
 		HXP.console.enable();
+		HXP.console.toggleKey = Key.K;
 #end
         HXP.scene = new scenes.MenuScene();
 	}
