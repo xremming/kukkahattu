@@ -13,6 +13,7 @@ class Bear extends Entity
 	private var sprite:Spritemap;
 	private var hp:Int;
 	private var player:Entity;
+	public var roar:Sfx;
 
 	public function new() {
 		super(HXP.width, (HXP.height * Math.random() - 60) );
@@ -24,14 +25,15 @@ class Bear extends Entity
 		setHitbox(96, 60);
 
 		hp = 3;
+		roar = new Sfx("audio/bear.ogg");
 
 		type = "bear";
 	}
 
 	public override function added() {
 		player = HXP.scene.entitiesForType("player").first();
-		var roar = new Sfx("audio/bear.ogg");
-		roar.play();
+			
+		KH.play(roar);
 	}
 
 	public override function update() {
@@ -41,12 +43,8 @@ class Bear extends Entity
 			moveTowards(player.x, player.y, 150 * HXP.elapsed);
 		}
 
-		var nazi = collide("nazi", x, y);
-		if (nazi != null) {
-			HXP.scene.remove(nazi);
-		}
-
 		if (collide("player", x, y) != null) {
+			KH.stopAllSounds();
 			HXP.scene = new scenes.GameOverScene();
 		}
 

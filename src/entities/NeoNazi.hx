@@ -9,12 +9,14 @@ import scenes.GameScene;
 import com.haxepunk.graphics.Image;
 import entities.Recipe;
 import com.haxepunk.Sfx;
+import entities.Bear;
 
 class NeoNazi extends Entity {
 	private var sprite:Spritemap;
 	private var player:Entity;
 	private var argh = [new Sfx("audio/naziargh0.ogg"), new Sfx("audio/naziargh1.ogg"), new Sfx("audio/naziargh2.ogg")];
 	private var arghSound:Sfx;
+	private var deathSound:Sfx;
 
 	public function new() {
 
@@ -48,19 +50,28 @@ class NeoNazi extends Entity {
 
 		setHitbox(36, 58);
 
+		deathSound = new Sfx("audio/nazidead.ogg");
+		arghSound = HXP.choose(argh);
+
 		type = "nazi";
 	}
 
 	public override function added() {
 		player = HXP.scene.entitiesForType("player").first();
-		arghSound = HXP.choose(argh);
-		arghSound.play();
+		
+		KH.play(arghSound);
 	}
 
 	public override function update() {
 		moveTowards(player.x, player.y, 100 * HXP.elapsed);
 
 		if (collide("player", x, y) != null) {
+			var entities = new Array<Entity>();
+			HXP.scene.getAll(entities);
+			for (i in entities) {
+				HXP.scene.remove(i);	
+			}
+			KH.stopAllSounds();
 			HXP.scene = new scenes.GameOverScene();
 		}
 
@@ -80,9 +91,7 @@ class NeoNazi extends Entity {
 				arghSound.stop();
 			}
 
-			// death sound
-			var sound = new Sfx("audio/nazidead.ogg");
-			sound.play();
+			deathSound.play();
 
 			HXP.scene.remove(laser);
 			HXP.scene.remove(this);

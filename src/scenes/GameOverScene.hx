@@ -6,6 +6,7 @@ import com.haxepunk.HXP;
 import entities.Recipe;
 import com.haxepunk.utils.Input;
 import com.haxepunk.utils.Key;
+import com.haxepunk.Sfx;
 
 
 class GameOverScene extends Scene
@@ -33,6 +34,9 @@ class GameOverScene extends Scene
 			add(recipe);
 			x += recipe.width;
 		}
+
+		var sound = new Sfx("audio/lost.ogg");
+		sound.play();
 
 	}
 
