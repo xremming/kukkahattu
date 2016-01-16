@@ -5,6 +5,7 @@ import com.haxepunk.graphics.Spritemap;
 import com.haxepunk.HXP;
 import entities.Player;
 import entities.Laser;
+import entities.powerups.Carrot;
 
 class Bear extends Entity
 {
@@ -55,6 +56,13 @@ class Bear extends Entity
 			if (hp == 0) {
 				HXP.scene.remove(this);
 			}
+		}
+
+		if (x <= -130) {
+			var carrot = new Carrot(HXP.halfWidth - 16, HXP.halfHeight -16);
+			HXP.scene.add(carrot);
+
+			HXP.scene.remove(this);
 		}
 
 		super.update();
