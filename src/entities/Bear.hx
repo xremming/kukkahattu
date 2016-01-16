@@ -13,13 +13,13 @@ class Bear extends Entity
 	private var player:Entity;
 
 	public function new() {
-		super(HXP.width, (HXP.height * Math.random() - 80) );
-		sprite = new Spritemap("graphics/bear.png", 128, 80);
+		super(HXP.width, (HXP.height * Math.random() - 60) );
+		sprite = new Spritemap("graphics/bear.png", 96, 60);
 		sprite.add("walk", [1, 2], 6);
 		sprite.play("walk");
 		graphic = sprite;
 
-		setHitbox(128, 80);
+		setHitbox(96, 60);
 
 		hp = 3;
 
