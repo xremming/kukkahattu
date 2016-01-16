@@ -91,7 +91,7 @@ class NeoNazi extends Entity {
 				arghSound.stop();
 			}
 
-			deathSound.play();
+			KH.play(deathSound);
 
 			HXP.scene.remove(laser);
 			HXP.scene.remove(this);
