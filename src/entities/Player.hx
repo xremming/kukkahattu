@@ -6,6 +6,8 @@ import com.haxepunk.utils.Input;
 import com.haxepunk.utils.Key;
 import com.haxepunk.HXP;
 
+import entities.Laser;
+
 class Player extends Entity
 {
     private var sprite:Spritemap;
@@ -20,6 +22,10 @@ class Player extends Entity
         sprite.add("walk_down", [3, 4], 6);
         sprite.add("walk_up", [6, 7], 6);
         sprite.add("walk_stop", [5], 6);
+
+        sprite.add("shoot_horiz", [1]);
+        sprite.add("shoot_up", [8]);
+        sprite.add("shoot_down", [5]);
 
         sprite.play("walk_stop");
 
@@ -51,6 +57,9 @@ class Player extends Entity
     private var cRight:Bool = false;
     private var cDown:Bool = false;
     private var cLeft:Bool = false;
+
+    private var sDirection:Int = -1;
+
     private var cShoot:Bool = false;
 
     private function checkInput()
@@ -71,6 +80,17 @@ class Player extends Entity
             cLeft = true;
         if (Input.check(Key.SPACE))
             cShoot = true;
+
+        sDirection = -1;
+
+        if (Input.check(Key.UP))
+            sDirection = 0;
+        if (Input.check(Key.RIGHT))
+            sDirection = 1;
+        if (Input.check(Key.DOWN))
+            sDirection = 2;
+        if (Input.check(Key.LEFT))
+            sDirection = 3;
     }
 
     private function move()
@@ -97,31 +117,65 @@ class Player extends Entity
 
     private function setAnimations()
     {
+        var notMoving:Bool = false;
         if (Math.round(accX) == 0 && Math.round(accY) == 0)
-            sprite.play("walk_stop");
-        else if (cLeft) {
-            sprite.flipped = true;
-            sprite.play("walk_horiz");
-        } else if (cRight) {
-            sprite.flipped = false;
-            sprite.play("walk_horiz");
-        } else if (cDown)
-            sprite.play("walk_down");
-        else if (cUp)
-            sprite.play("walk_up");
+            notMoving = true;
+
+        if (sDirection != -1) {
+            if (notMoving) {
+                switch (sDirection) {
+                    case 0:
+                        sprite.play("shoot_up");
+                    case 1:
+                        sprite.flipped = false;
+                        sprite.play("shoot_horiz");
+                    case 2:
+                        sprite.play("shoot_down");
+                    case 3:
+                        sprite.flipped = true;
+                        sprite.play("shoot_horiz");
+                }
+            } else {
+                switch (sDirection) {
+                    case 0:
+                        sprite.play("walk_up");
+                    case 1:
+                        sprite.flipped = false;
+                        sprite.play("walk_horiz");
+                    case 2:
+                        sprite.play("walk_down");
+                    case 3:
+                        sprite.flipped = true;
+                        sprite.play("walk_horiz");
+                }
+            }
+        } else {
+            if (notMoving)
+                sprite.play("walk_stop");
+            else if (cLeft) {
+                sprite.flipped = true;
+                sprite.play("walk_horiz");
+            } else if (cRight) {
+                sprite.flipped = false;
+                sprite.play("walk_horiz");
+            } else if (cDown)
+                sprite.play("walk_down");
+            else if (cUp)
+                sprite.play("walk_up");
+        }
     }
 
     private function shoot()
     {
-        if (cShoot) {
-            if (cRight)
-                HXP.scene.add(new Laser(1, x, y));
-            else if (cLeft)
-                HXP.scene.add(new Laser(3, x, y));
-            else if (cDown)
-                HXP.scene.add(new Laser(2, x, y));
-            else if (cUp)
-                HXP.scene.add(new Laser(0, x, y));
+        switch (sDirection) {
+            case 0:
+                HXP.scene.add(new Laser(sDirection, x, y));
+            case 1:
+                HXP.scene.add(new Laser(sDirection, x, y));
+            case 2:
+                HXP.scene.add(new Laser(sDirection, x, y));
+            case 3:
+                HXP.scene.add(new Laser(sDirection, x, y));
         }
     }
 }
