@@ -47,17 +47,16 @@ class GameScene extends Scene
 
     public override function update() 
     {
-        var prob = Math.random();
-
         spawnTimer -= HXP.elapsed;
         if (spawnTimer < 0) 
         {
+            var prob = Math.random();
             if (prob < 0.1) {
                 add(new Bear());
             } else {
                 add(new NeoNazi());
             }
-            
+            // Set spawn timer for next enemy
             spawnTimer = (1 / KH.spawnRate) + ((1 / KH.spawnDeviation) * Math.random());
         }
 
