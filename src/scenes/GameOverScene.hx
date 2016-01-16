@@ -40,7 +40,7 @@ class GameOverScene extends Scene
 
 
 		timer += HXP.elapsed;
-		if (timer >= 7 || Input.released(Key.ESCAPE)) {
+		if (timer >= 7 || Input.released(Key.SPACE)) {
 			HXP.scene = new scenes.MenuScene();
 		}
 	}

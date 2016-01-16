@@ -42,8 +42,7 @@ class NeoNazi extends Entity {
 		if (laser != null) {
 			var prob = Math.random();
 
-			if (prob >= 0.3) {
-				trace("Recipe dropped!");
+			if (prob >= KH.recipeDroprate) {
 				var recipe = new Recipe(0, 0);
 				recipe.x = x + halfWidth - recipe.halfWidth;
 				recipe.y = y + halfHeight - recipe.halfHeight;
