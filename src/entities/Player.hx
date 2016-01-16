@@ -168,7 +168,7 @@ class Player extends Entity
         }
     }
 
-    private var fireRate:Float = 3;
+    private var fireRate:Float = KH.playerFireRate;
     private var canShoot:Bool = true;
     private var sinceShoot:Float = 0;
 
@@ -178,14 +178,17 @@ class Player extends Entity
             switch (sDirection) {
                 case 0:
                     HXP.scene.add(new Laser(sDirection, x+10, y-8));
+                    canShoot = false;
                 case 1:
                     HXP.scene.add(new Laser(sDirection, x+14, y+6));
+                    canShoot = false;
                 case 2:
                     HXP.scene.add(new Laser(sDirection, x+10, y+8));
+                    canShoot = false;
                 case 3:
                     HXP.scene.add(new Laser(sDirection, x+4, y+6));
+                    canShoot = false;
             }
-            canShoot = false;
         } else {
             if (sinceShoot >= 1 / fireRate) {
                 sinceShoot = 0;
