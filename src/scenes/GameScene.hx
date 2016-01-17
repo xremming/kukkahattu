@@ -6,6 +6,7 @@ import com.haxepunk.HXP;
 import entities.Player;
 import entities.NeoNazi;
 import entities.Bear;
+import com.haxepunk.Sfx;
 
 class GameScene extends Scene
 {
