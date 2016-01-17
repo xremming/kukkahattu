@@ -28,6 +28,7 @@ class Laser extends Entity
         graphic = Image.createRect(width, height, 0xff0000);
         setHitbox(width, height);
         type = "laser";
+        layer = 0;
     }
 
     private var speed:Float = 256;

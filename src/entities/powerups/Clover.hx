@@ -15,6 +15,7 @@ class Clover extends Entity
 
 		type = "powerup";
 		setHitbox(23, 30);
+		layer = 2;
 	}
 
 	public override function update()
