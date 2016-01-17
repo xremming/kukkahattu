@@ -7,10 +7,15 @@ import com.haxepunk.HXP;
 class Laser extends Entity
 {
 	private var dir:Int;
+    private var accX:Float;
+    private var accY:Float;
 
-    public function new(dir:Int, x:Float, y:Float)
+    public function new(dir:Int, x:Float, y:Float, accX:Float, accY:Float)
     {
         super(x, y);
+
+        this.accX = accX;
+        this.accY = accY;
 
         this.dir = dir;
 
@@ -30,19 +35,19 @@ class Laser extends Entity
         type = "laser";
     }
 
-    private var speed:Float = 256;
+    private var speed:Float = 350;
 
     public override function update()
     {
     	switch (dir) {
     		case 0:
-    			moveBy(0, -speed * HXP.elapsed);
+    			moveBy(accX, accY - (speed * HXP.elapsed));
     		case 1:
-    			moveBy(speed * HXP.elapsed, 0);
+    			moveBy(accX + (speed * HXP.elapsed), accY);
     		case 2:
-    			moveBy(0, speed * HXP.elapsed);
+    			moveBy(accX, accY + (speed * HXP.elapsed));
     		case 3:
-    			moveBy(-speed * HXP.elapsed, 0);
+                moveBy(accX - (speed * HXP.elapsed), accY);
     	}
 
     	if (x > HXP.width || y > HXP.height || x < -width || y < -height)

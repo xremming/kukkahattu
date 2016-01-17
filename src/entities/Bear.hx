@@ -23,7 +23,7 @@ class Bear extends Entity
 		sprite.play("walk");
 		graphic = sprite;
 
-		setHitbox(90, 40, -3, -15);
+		setHitbox(90, 55, -3, 0);
 
 		hp = 5;
 		roar = new Sfx("audio/bear.ogg");

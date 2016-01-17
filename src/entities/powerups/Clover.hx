@@ -17,8 +17,18 @@ class Clover extends Entity
 		setHitbox(23, 30);
 	}
 
+	private var age:Float = 0;
+
 	public override function update()
 	{
+		if (age >= 5)
+			HXP.scene.remove(this);
+		else
+			age += HXP.elapsed;
+
+		if (age > 0.8 * 5 && Math.round(age * age * 8) % 2 == 0)
+			visible = !visible;
+
 		if (collide("player", x, y) != null) {
 			HXP.scene.remove(this);
 			KH.recipeDroprate *= 1.1;

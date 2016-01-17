@@ -180,7 +180,7 @@ class Player extends Entity
     {
         if (canShoot) {
             if (sDirection >= 0 && sDirection <= 3) {
-                HXP.scene.add(new Laser(sDirection, x+xOffset[sDirection], y+yOffset[sDirection]));
+                HXP.scene.add(new Laser(sDirection, x+xOffset[sDirection], y+yOffset[sDirection], accX, accY));
                 canShoot = false;
                 KH.play(HXP.choose(shootSounds));
             }
