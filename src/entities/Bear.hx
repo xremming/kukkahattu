@@ -22,9 +22,9 @@ class Bear extends Entity
 		sprite.play("walk");
 		graphic = sprite;
 
-		setHitbox(96, 60);
+		setHitbox(90, 40, -3, -15);
 
-		hp = 3;
+		hp = 5;
 		roar = new Sfx("audio/bear.ogg");
 
 		type = "bear";
@@ -37,7 +37,7 @@ class Bear extends Entity
 	}
 
 	public override function update() {
-		if (hp == 3) {
+		if (hp == 5) {
 			moveTowards(-130, Math.random() * HXP.height, 80 * HXP.elapsed);
 		} else {
 			moveTowards(player.x, player.y, 150 * HXP.elapsed);

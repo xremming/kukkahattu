@@ -48,7 +48,7 @@ class NeoNazi extends Entity {
 
 		graphic = sprite;
 
-		setHitbox(36, 58);
+		setHitbox(18, 40, -10, -5);
 
 		deathSound = new Sfx("audio/nazidead.ogg");
 		arghSound = HXP.choose(argh);
@@ -91,7 +91,7 @@ class NeoNazi extends Entity {
 				arghSound.stop();
 			}
 
-			KH.play(deathSound);
+			deathSound.play();
 
 			HXP.scene.remove(laser);
 			HXP.scene.remove(this);
