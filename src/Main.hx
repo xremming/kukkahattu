@@ -26,7 +26,7 @@ class Main extends Engine
 
     public override function update()
     {
-    	if (Input.check(Key.M)) {
+    	if (Input.released(Key.M)) {
     		if (HXP.volume > 0)
     			HXP.volume = 0;
     		else
