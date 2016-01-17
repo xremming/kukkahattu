@@ -32,7 +32,7 @@ class Player extends Entity
 
         graphic = sprite;
 
-        setHitbox(24, 52);
+        setHitbox(12, 36, -6, -4);
 
         type = "player";
     }
