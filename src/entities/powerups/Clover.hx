@@ -7,9 +7,9 @@ import com.haxepunk.graphics.Image;
 
 class Boot extends Entity
 {
-	public function new(x:Float, y:Float)
+	public function new()
 	{
-		super(x, y);
+		super((HXP.width - 32) * Math.random(), (HXP.height - 32) * Math.random());
 
 		graphic = new Image("graphics/clover.png");
 

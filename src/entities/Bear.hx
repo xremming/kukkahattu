@@ -16,7 +16,7 @@ class Bear extends Entity
 	public var roar:Sfx;
 
 	public function new() {
-		super(HXP.width, (HXP.height * Math.random() - 60) );
+		super(HXP.width, (HXP.height - 60) * Math.random());
 		sprite = new Spritemap("graphics/bear.png", 96, 60);
 		sprite.add("walk", [1, 2], 6);
 		sprite.play("walk");
