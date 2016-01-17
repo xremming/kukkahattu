@@ -5,6 +5,7 @@ import com.haxepunk.graphics.Image;
 import com.haxepunk.HXP;
 import com.haxepunk.utils.Input;
 import com.haxepunk.utils.Key;
+import com.haxepunk.Sfx;
 
 class MenuScene extends Scene {
 	private var timer:Float = 0;
@@ -26,6 +27,8 @@ class MenuScene extends Scene {
 		play.x = HXP.halfWidth - (play.width / 2);
 		play.y = HXP.halfHeight - (play.height / 2);
 
+		KH.play(new Sfx("audio/intro.ogg"));
+
 	}
 
 	public override function update() {
@@ -36,6 +39,7 @@ class MenuScene extends Scene {
 		}
 
 		if(Input.released(Key.SPACE)) {
+			KH.stopAllSounds();
 			HXP.scene = new scenes.GameScene();
 		}
 
