@@ -23,6 +23,7 @@ class GameOverScene extends Scene
 	public override function begin() {
 		if (win) {
 			addGraphic(new Image("graphics/win.png"));
+			KH.play(new Sfx("audio/win.ogg"));
 		} else {
 			addGraphic(new Image("graphics/gameover.png"));
 			KH.play(new Sfx("audio/lost.ogg"));
@@ -52,16 +53,15 @@ class GameOverScene extends Scene
 
 		if (score > recipesPerLine) {
 			var lines = Math.ceil(score / recipesPerLine);
-			trace(lines);
 			var recipesOnLastLine = score - (recipesPerLine * (lines - 1));
-			trace(recipesOnLastLine);
-			trace(recipesPerLine);
-
+			
 			for (i in 0 ... (lines - 1)) {
 				addRecipeLine(recipesPerLine, y);
 				y += r.height + 1;
 			}
+			
 			addRecipeLine(recipesOnLastLine, y);
+
 		} else {
 			addRecipeLine(score, y);
 		}

@@ -26,6 +26,7 @@ class Recipe extends Entity
 
 		if (collide("player", x, y) != null) {
 			KH.score++;
+			KH.play(new com.haxepunk.Sfx("audio/ahaa.ogg"));
 			HXP.scene.remove(this);
 		}
 
