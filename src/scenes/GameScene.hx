@@ -6,6 +6,7 @@ import com.haxepunk.HXP;
 import entities.Player;
 import entities.NeoNazi;
 import entities.Bear;
+import com.haxepunk.Sfx;
 
 class GameScene extends Scene
 {
@@ -29,6 +30,7 @@ class GameScene extends Scene
 
         // Don't add NeoNazis right at the beginning
         spawnTimer = 1;
+
 	}
 
     private function initValues()
