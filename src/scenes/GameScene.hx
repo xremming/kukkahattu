@@ -6,6 +6,7 @@ import com.haxepunk.HXP;
 import entities.Player;
 import entities.NeoNazi;
 import entities.Bear;
+import entities.powerups.Clover;
 import com.haxepunk.Sfx;
 
 class GameScene extends Scene
@@ -65,7 +66,7 @@ class GameScene extends Scene
             spawnTimer = (1 / KH.spawnRate) + ((1 / KH.spawnDeviation) * Math.random());
         }
 
-        cloverTimer -= HXP.elapsed
+        cloverTimer -= HXP.elapsed;
         if (cloverTimer <= 0) {
             add(new Clover());
             cloverTimer = 5 + 5 * Math.random();

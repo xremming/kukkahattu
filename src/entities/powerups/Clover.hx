@@ -5,7 +5,7 @@ import com.haxepunk.HXP;
 import com.haxepunk.Sfx;
 import com.haxepunk.graphics.Image;
 
-class Boot extends Entity
+class Clover extends Entity
 {
 	public function new()
 	{
