@@ -21,19 +21,8 @@ class GameOverScene extends Scene
 	public override function begin() {
 		addGraphic(new Image("graphics/gameover.png"));
 		timer = 0;
-		var r = new Recipe(0, 0);
-		var y = HXP.halfHeight;
-		var x = HXP.halfWidth - ((r.width / 2) * KH.score );
-
-		score = KH.score;
-
-		for (i in 0 ... KH.score) {
-			var recipe = new Recipe(0, 0);
-			recipe.x = x;
-			recipe.y = y;
-			add(recipe);
-			x += recipe.width;
-		}
+		
+		addRecipes();
 
 		KH.play(new Sfx("audio/lost.ogg"));
 
@@ -48,4 +37,40 @@ class GameOverScene extends Scene
 			HXP.scene = new scenes.MenuScene();
 		}
 	}
+
+	private function addRecipes() {
+		var r = new Recipe(0, 0);
+
+		score = KH.score;
+		var recipesPerLine = Math.floor(HXP.width / r.width);
+		var y = HXP.halfHeight;
+
+		if (score > recipesPerLine) {
+			var lines = Math.ceil(score / recipesPerLine);
+			trace(lines);
+			var recipesOnLastLine = score - (recipesPerLine * (lines - 1));
+			trace(recipesOnLastLine);
+			trace(recipesPerLine);
+
+			for (i in 0 ... (lines - 1)) {
+				addRecipeLine(recipesPerLine, y);
+				y += r.height + 1;
+			}
+			addRecipeLine(recipesOnLastLine, y);
+		} else {
+			addRecipeLine(score, y);
+		}
+
+	}
+
+	private function addRecipeLine(count:Int, y:Float) {
+		var r = new Recipe(0,0);
+		var x = HXP.halfWidth - ((r.width / 2) * count);
+		for (i in 0 ... count) {
+			r = new Recipe(x,y);
+			add(r);
+			x += r.width;
+		}
+	}
+
 }

@@ -6,7 +6,7 @@ import com.haxepunk.HXP;
 
 class Recipe extends Entity
 {
-	public function new(x:Int, y:Int) {
+	public function new(x:Float, y:Float) {
 		super(x, y);
 		graphic = new Image("graphics/recipe.png");
 		setHitbox(23, 29);

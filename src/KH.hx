@@ -4,6 +4,7 @@ class KH
 {
 	public static var score:Int = 0;
 	public static var highScore:Int = 0;
+	public static var recipesToWin = 162;
 
 
 	public static var _playerFireRate:Float = 3;
