@@ -25,7 +25,7 @@ class GameScene extends Scene
         initValues();
 
         // Add background
-        addGraphic(new Image("graphics/background.png"));
+        addGraphic(new Image("graphics/background.png"), 4);
 
         // Add player to middle of screen
         add(new Player(HXP.halfWidth - 12, HXP.halfHeight - 26));

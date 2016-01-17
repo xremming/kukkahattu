@@ -35,8 +35,7 @@ class GameOverScene extends Scene
 			x += recipe.width;
 		}
 
-		var sound = new Sfx("audio/lost.ogg");
-		sound.play();
+		KH.play(new Sfx("audio/lost.ogg"));
 
 	}
 
@@ -45,6 +44,7 @@ class GameOverScene extends Scene
 
 		timer += HXP.elapsed;
 		if (timer >= 10 || Input.released(Key.SPACE)) {
+			KH.stopAllSounds();
 			HXP.scene = new scenes.MenuScene();
 		}
 	}

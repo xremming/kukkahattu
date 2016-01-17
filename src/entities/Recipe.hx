@@ -10,6 +10,7 @@ class Recipe extends Entity
 		super(x, y);
 		graphic = new Image("graphics/recipe.png");
 		setHitbox(23, 29);
+		layer = 2;
 	}
 
 	private var age:Float = 0;

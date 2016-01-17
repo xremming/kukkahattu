@@ -29,6 +29,7 @@ class Bear extends Entity
 		roar = new Sfx("audio/bear.ogg");
 
 		type = "bear";
+		layer = 1;
 	}
 
 	public override function added() {

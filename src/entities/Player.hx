@@ -35,6 +35,7 @@ class Player extends Entity
         setHitbox(12, 36, -6, -4);
 
         type = "player";
+        layer = 1;
     }
 
     private var accX:Float = 0;

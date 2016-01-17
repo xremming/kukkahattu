@@ -54,6 +54,7 @@ class NeoNazi extends Entity {
 		arghSound = HXP.choose(argh);
 
 		type = "nazi";
+		layer = 1;
 	}
 
 	public override function added() {

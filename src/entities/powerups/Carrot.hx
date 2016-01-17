@@ -15,6 +15,7 @@ class Carrot extends Entity
 
 		type = "powerup";
 		setHitbox(32, 32);
+		layer = 2;
 	}
 
 	private var age:Float = 0;
