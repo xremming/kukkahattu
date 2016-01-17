@@ -47,7 +47,7 @@ class Bear extends Entity
 
 		if (collide("player", x, y) != null) {
 			KH.stopAllSounds();
-			HXP.scene = new scenes.GameOverScene();
+			HXP.scene = new scenes.GameOverScene(false);
 		}
 
 		var laser = collide("laser", x, y);

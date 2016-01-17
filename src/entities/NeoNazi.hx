@@ -73,7 +73,7 @@ class NeoNazi extends Entity {
 				HXP.scene.remove(i);	
 			}
 			KH.stopAllSounds();
-			HXP.scene = new scenes.GameOverScene();
+			HXP.scene = new scenes.GameOverScene(false);
 		}
 
 		var laser = collide("laser", x, y);
