@@ -7,6 +7,7 @@ import entities.Player;
 import entities.NeoNazi;
 import entities.Bear;
 import entities.powerups.Clover;
+import scenes.GameOverScene;
 import com.haxepunk.Sfx;
 
 class GameScene extends Scene
@@ -75,6 +76,10 @@ class GameScene extends Scene
         // Increase enemy spawn rate
         KH.spawnRate += KH._spawnRateDifficulty * HXP.elapsed;
         KH.spawnDeviation += KH._spawnDeviationDifficulty * HXP.elapsed;
+
+        // If you've collected all recepies, you win game
+        if (KH.score >= KH.recipesToWin)
+            HXP.scene = new GameOverScene(true);
 
         super.update();
     }
