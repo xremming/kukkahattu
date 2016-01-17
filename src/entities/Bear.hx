@@ -6,6 +6,7 @@ import com.haxepunk.HXP;
 import entities.Player;
 import entities.Laser;
 import entities.powerups.Carrot;
+import entities.powerups.Boot;
 import com.haxepunk.Sfx;
 
 class Bear extends Entity
@@ -55,7 +56,7 @@ class Bear extends Entity
 			HXP.scene.remove(laser);
 
 			if (hp == 0) {
-				HXP.scene.add(new entities.powerups.Boot(x + width / 2, y + height / 2));
+				HXP.scene.add(new Boot(x + width / 2 - 12, y + height / 2 - 16));
 				HXP.scene.remove(this);
 			}
 		}

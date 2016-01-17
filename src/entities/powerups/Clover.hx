@@ -9,12 +9,12 @@ class Boot extends Entity
 {
 	public function new()
 	{
-		super((HXP.width - 32) * Math.random(), (HXP.height - 32) * Math.random());
+		super((HXP.width - 23) * Math.random(), (HXP.height - 30) * Math.random());
 
 		graphic = new Image("graphics/clover.png");
 
 		type = "powerup";
-		setHitbox(32, 32);
+		setHitbox(23, 30);
 	}
 
 	public override function update()

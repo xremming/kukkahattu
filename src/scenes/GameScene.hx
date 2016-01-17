@@ -10,6 +10,7 @@ import entities.Bear;
 class GameScene extends Scene
 {
     private var spawnTimer:Float;
+    private var cloverTimer:Float;
 
     public function new()
     {
@@ -29,6 +30,9 @@ class GameScene extends Scene
 
         // Don't add NeoNazis right at the beginning
         spawnTimer = 1;
+
+        // Don't add first clover too soon
+        cloverTimer = 5 + 5 * Math.random();
 	}
 
     private function initValues()
@@ -63,6 +67,7 @@ class GameScene extends Scene
         cloverTimer -= HXP.elapsed
         if (cloverTimer <= 0) {
             add(new Clover());
+            cloverTimer = 5 + 5 * Math.random();
         }
 
         // Increase enemy spawn rate
