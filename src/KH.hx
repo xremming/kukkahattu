@@ -9,14 +9,14 @@ class KH
 	public static var _playerFireRate:Float = 3;
 	public static var playerFireRate:Float = _playerFireRate;
 
-	public static var _acc = 64;
-	public static var acc = _acc;
+	public static var _acc:Float = 64;
+	public static var acc:Float = _acc;
 
-	public static var _maxAcc = 128;
-	public static var maxAcc = _maxAcc;
+	public static var _maxAcc:Float = 128;
+	public static var maxAcc:Float = _maxAcc;
 
-	public static var _friction = 0.75;
-	public static var friction = _friction;
+	public static var _friction:Float = 0.75;
+	public static var friction:Float = _friction;
 
 
 	public static var _recipeDropRate:Float = 0.3;
@@ -27,11 +27,11 @@ class KH
 
 	public static var _spawnRate:Float = 0.5;
 	public static var spawnRate:Float = _spawnRate;
-	public static var _spawnRateDifficulty = 0.02;
+	public static var _spawnRateDifficulty:Float = 0.02;
 
-	public static var _spawnDeviation = 0.2;
+	public static var _spawnDeviation:Float = 0.2;
 	public static var spawnDeviation:Float = _spawnDeviation;
-	public static var _spawnDeviationDifficulty = 0.01;
+	public static var _spawnDeviationDifficulty:Float = 0.01;
 
 	private static var sounds = new Array();
 	public static function play(sound:Sfx)

@@ -2,16 +2,16 @@ package entities.powerups;
 
 import com.haxepunk.Entity;
 import com.haxepunk.HXP;
-import com.haxepunk.graphics.Image;
 import com.haxepunk.Sfx;
+import com.haxepunk.graphics.Image;
 
-class Carrot extends Entity
+class Boot extends Entity
 {
 	public function new(x:Float, y:Float)
 	{
 		super(x, y);
 
-		graphic = new Image("graphics/carrot.png");
+		graphic = new Image("graphics/clover.png");
 
 		type = "powerup";
 		setHitbox(32, 32);
@@ -21,7 +21,7 @@ class Carrot extends Entity
 	{
 		if (collide("player", x, y) != null) {
 			HXP.scene.remove(this);
-			KH.playerFireRate += 1;
+			KH.recipeDroprate *= 1.1;
 			KH.play(new Sfx("audio/plim.ogg"));
 		}
 

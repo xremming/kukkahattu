@@ -48,7 +48,7 @@ class GameScene extends Scene
     public override function update() 
     {
         spawnTimer -= HXP.elapsed;
-        if (spawnTimer < 0) 
+        if (spawnTimer <= 0) 
         {
             var prob = Math.random();
             if (prob < 0.1) {
@@ -58,6 +58,11 @@ class GameScene extends Scene
             }
             // Set spawn timer for next enemy
             spawnTimer = (1 / KH.spawnRate) + ((1 / KH.spawnDeviation) * Math.random());
+        }
+
+        cloverTimer -= HXP.elapsed
+        if (cloverTimer <= 0) {
+            add(new Clover());
         }
 
         // Increase enemy spawn rate

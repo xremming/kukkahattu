@@ -55,6 +55,7 @@ class Bear extends Entity
 			HXP.scene.remove(laser);
 
 			if (hp == 0) {
+				HXP.scene.add(new entities.powerups.Boot(x + width / 2, y + height / 2));
 				HXP.scene.remove(this);
 			}
 		}
