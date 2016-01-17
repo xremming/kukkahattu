@@ -13,19 +13,24 @@ class GameOverScene extends Scene
 {
 	private var timer:Float;
 	private var score:Int;
+	private var win:Bool;
 
-	function new() {
+	function new(win:Bool) {
 		super();
+		this.win = win;
 	}
 
 	public override function begin() {
-		addGraphic(new Image("graphics/gameover.png"));
+		if (win) {
+			addGraphic(new Image("graphics/win.png"));
+		} else {
+			addGraphic(new Image("graphics/gameover.png"));
+			KH.play(new Sfx("audio/lost.ogg"));
+		}
+
 		timer = 0;
 		
 		addRecipes();
-
-		KH.play(new Sfx("audio/lost.ogg"));
-
 	}
 
 	public override function update() {
