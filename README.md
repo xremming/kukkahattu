@@ -1,6 +1,6 @@
 # LASERKUKKAHATTU
 
-[**PLAY HERE**](remming.fi/laserkukkahattu)
+[**PLAY HERE**](http://remming.fi/laserkukkahattu)
 
 A game about kukkahattuaunt who shoots lazors from her eyes, to kill evil neo-Nazis to get back her grandmas recipe book ... page ... by ... page.
 
